@@ -184,29 +184,20 @@
   .map-wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:center;}
   .map-box{background:var(--white);border-radius:20px;padding:18px;box-shadow:0 4px 14px rgba(47,93,62,.08);}
   .map-box svg{width:100%;height:auto;display:block;border-radius:12px;}
-  /* 약도를 누르면 구글 지도로 이동 */
-  .map-link{
-    display:block;position:relative;border-radius:12px;
-    text-decoration:none;overflow:hidden;
-    transition:transform .25s ease, box-shadow .25s ease;
+  /* 실제 구글 지도를 끼워 넣는 자리 */
+  .map-frame{
+    position:relative;width:100%;
+    aspect-ratio:520/340;           /* 예전 약도와 같은 가로세로 비율 */
+    border-radius:12px;overflow:hidden;
+    background:var(--leaf-light);   /* 지도가 뜨기 전까지 보이는 바탕색 */
+    box-shadow:inset 0 0 0 1px rgba(47,93,62,.10);
   }
-  .map-link:hover,.map-link:focus-visible{
-    transform:translateY(-3px);
-    box-shadow:0 12px 26px rgba(47,93,62,.22);
-    outline:none;
+  .map-frame iframe{
+    position:absolute;inset:0;
+    width:100%;height:100%;border:0;display:block;
   }
-  .map-link__badge{
-    position:absolute;top:12px;right:12px;
-    display:inline-flex;align-items:center;gap:6px;
-    background:rgba(255,255,255,.96);
-    border:2px solid var(--forest);border-radius:999px;
-    padding:6px 14px;
-    font-family:'Jua',sans-serif;font-size:.86rem;color:var(--forest);
-    white-space:nowrap;box-shadow:0 4px 10px rgba(47,93,62,.18);
-    transition:background .25s,color .25s;
-  }
-  .map-link:hover .map-link__badge,.map-link:focus-visible .map-link__badge{
-    background:var(--forest);color:#fff;
+  @supports not (aspect-ratio:1/1){   /* 아주 오래된 브라우저 대비 */
+    .map-frame{height:340px;}
   }
   .map-cta{
     display:flex;align-items:center;justify-content:center;gap:8px;
@@ -536,54 +527,19 @@
     </div>
     <div class="map-wrap">
       <div class="map-box">
-        <a class="map-link"
-           href="https://www.google.com/maps/search/?api=1&amp;query=%EA%B5%AD%EA%B3%B5%EB%A6%BD%EB%AC%BC%EB%A7%9D%EC%9D%B4%EC%96%B4%EB%A6%B0%EC%9D%B4%EC%A7%91%20%EB%8C%80%EA%B5%AC%EA%B4%91%EC%97%AD%EC%8B%9C%20%EC%88%98%EC%84%B1%EA%B5%AC%20%EC%B2%AD%EC%88%98%EB%A1%9C%20213"
-           target="_blank" rel="noopener noreferrer"
-           aria-label="구글 지도에서 국공립물망이 어린이집 위치 보기 (새 창)">
-        <svg viewBox="0 0 520 340" role="img" aria-label="국공립물망이 어린이집 약도">
-          <rect width="520" height="340" fill="#EEF4E6"/>
-          <!-- 도로 -->
-          <path d="M0 210 H520" stroke="#FFFFFF" stroke-width="46"/>
-          <path d="M0 210 H520" stroke="#C9D2BF" stroke-width="48" fill="none" opacity=".4"/>
-          <path d="M0 210 H520" stroke="#FFF" stroke-width="42"/>
-          <path d="M0 210 H520" stroke="#A9B79B" stroke-width="2" stroke-dasharray="14 12"/>
-          <path d="M330 210 V0" stroke="#FFF" stroke-width="34"/>
-          <path d="M330 210 V0" stroke="#A9B79B" stroke-width="2" stroke-dasharray="12 10"/>
-          <text x="20" y="243" font-size="17" fill="#5B6B50" font-family="sans-serif" font-weight="bold">청 수 로</text>
-          <!-- 공원/녹지 -->
-          <circle cx="90" cy="90" r="46" fill="#BBD6A2"/>
-          <circle cx="128" cy="112" r="30" fill="#A6C98B"/>
-          <text x="60" y="95" font-size="14" fill="#3E5A34" font-family="sans-serif">근린공원</text>
-          <!-- 건물들 -->
-          <rect x="400" y="90" width="80" height="70" rx="6" fill="#D8DEE8"/>
-          <text x="410" y="130" font-size="13" fill="#55606E" font-family="sans-serif">상가건물</text>
-          <rect x="60" y="260" width="90" height="56" rx="6" fill="#E4DCCB"/>
-          <text x="72" y="292" font-size="13" fill="#6E6350" font-family="sans-serif">주택가</text>
-          <rect x="400" y="256" width="86" height="60" rx="6" fill="#E4DCCB"/>
-          <text x="410" y="290" font-size="13" fill="#6E6350" font-family="sans-serif">주택가</text>
-          <!-- 어린이집 -->
-          <g>
-            <rect x="200" y="70" width="110" height="90" rx="10" fill="#7BA05B"/>
-            <path d="M195 74 L255 34 L315 74 Z" fill="#2F5D3E"/>
-            <rect x="240" y="118" width="30" height="42" rx="4" fill="#FBF9F0"/>
-            <rect x="212" y="90" width="22" height="20" rx="3" fill="#FBF9F0"/>
-            <rect x="276" y="90" width="22" height="20" rx="3" fill="#FBF9F0"/>
-          </g>
-          <!-- 위치 핀 -->
-          <g>
-            <path d="M255 6 c-13 0 -22 9 -22 21 0 15 22 33 22 33 s22 -18 22 -33 c0 -12 -9 -21 -22 -21z" fill="#E15B4E" transform="translate(0,-6)"/>
-            <circle cx="255" cy="20" r="8" fill="#FFF"/>
-          </g>
-          <rect x="168" y="168" width="176" height="26" rx="13" fill="#2F5D3E"/>
-          <text x="256" y="186" font-size="14" fill="#FFF" text-anchor="middle" font-family="sans-serif" font-weight="bold">국공립물망이 어린이집</text>
-          <text x="256" y="326" font-size="13" fill="#5B6B50" text-anchor="middle" font-family="sans-serif">대구 수성구 청수로 213</text>
-        </svg>
-          <span class="map-link__badge">🗺️ 구글 지도에서 보기</span>
-        </a>
+        <!-- 실제 구글 지도 (마우스로 끌고 확대·축소할 수 있어요) -->
+        <div class="map-frame">
+          <iframe
+            src="https://www.google.com/maps?q=%EA%B5%AC%EB%A6%BD%EB%AC%BC%EB%A7%9D%EC%9D%B4%EC%96%B4%EB%A6%B0%EC%9D%B4%EC%A7%91&amp;ll=35.8405238,128.6312601&amp;z=17&amp;hl=ko&amp;output=embed"
+            title="국공립물망이 어린이집 위치 (구글 지도)"
+            loading="lazy"
+            allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
         <a class="map-cta"
            href="https://www.google.com/maps/dir/?api=1&amp;destination=%EA%B5%AD%EA%B3%B5%EB%A6%BD%EB%AC%BC%EB%A7%9D%EC%9D%B4%EC%96%B4%EB%A6%B0%EC%9D%B4%EC%A7%91%20%EB%8C%80%EA%B5%AC%EA%B4%91%EC%97%AD%EC%8B%9C%20%EC%88%98%EC%84%B1%EA%B5%AC%20%EC%B2%AD%EC%88%98%EB%A1%9C%20213"
            target="_blank" rel="noopener noreferrer">🚗 구글 지도로 길찾기</a>
-        <p class="hint">약도는 이해를 돕기 위한 그림으로, 실제 주변 건물과 다를 수 있습니다.<br>약도를 누르면 구글 지도로 이동합니다.</p>
+        <p class="hint">지도를 끌어서 옮기거나 확대·축소할 수 있습니다.</p>
       </div>
       <div class="contact-card">
         <h3>🏡 국공립물망이 어린이집</h3>
