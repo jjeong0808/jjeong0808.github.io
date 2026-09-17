@@ -1,7 +1,9 @@
 {
   "updatedAt": null,
   "texts": {},
-  "images": {},
+  "images": {
+    "class.5": "assets/uploads/class-5.jpg"
+  },
   "notices": null,
   "popup": {}
 }
