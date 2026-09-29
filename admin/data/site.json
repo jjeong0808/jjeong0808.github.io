@@ -6,7 +6,13 @@
     "class.2": "assets/uploads/class-2.jpg",
     "class.3": "assets/uploads/class-3.jpg",
     "class.4": "assets/uploads/class-4.jpg",
-    "class.5": "assets/uploads/class-5.jpg"
+    "class.5": "assets/uploads/class-5.jpg",
+    "gallery.1": "assets/uploads/gallery-1.jpg",
+    "gallery.2": "assets/uploads/gallery-2.jpg",
+    "gallery.3": "assets/uploads/gallery-3.jpg",
+    "gallery.4": "assets/uploads/gallery-4.jpg",
+    "gallery.5": "assets/uploads/gallery-5.jpg",
+    "gallery.6": "assets/uploads/gallery-6.jpg"
   },
   "notices": null,
   "popup": {}
